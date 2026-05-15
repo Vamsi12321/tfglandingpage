@@ -35,6 +35,21 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+};
+
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
@@ -92,9 +107,15 @@ export default function HomePage() {
               <Link href="#bgv" className="group flex items-center gap-1.5 text-sm font-bold text-slate-600 hover:text-brand-600 transition-all px-3 py-1.5 rounded-full hover:bg-blue-50/50">
                 <ShieldCheck className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-500 transition-colors" /> BGV
               </Link>
+              
+              <ChevronRight className="w-3 h-3 text-slate-300 mx-0.5" />
+              
+              <Link href="#hrms" className="group flex items-center gap-1.5 text-sm font-bold text-slate-600 hover:text-brand-600 transition-all px-3 py-1.5 rounded-full hover:bg-blue-50/50">
+                <UserCheck className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-500 transition-colors" /> HRMS
+              </Link>
             </div>
             <div className="flex items-center gap-4">
-              <button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-purple-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-blue-500/30 hover:shadow-indigo-500/40">
+              <button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-purple-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-blue-500/30 hover:shadow-indigo-500/40 hover:scale-105 active:scale-95">
                 Get Started
               </button>
             </div>
@@ -118,27 +139,27 @@ export default function HomePage() {
           >
             <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white shadow-xl shadow-brand-500/10 border border-brand-100 text-brand-600 text-sm font-bold mb-8">
               <Sparkles className="w-5 h-5 text-accent-500" />
-              <span>Next-Gen Hiring & Background Verification</span>
+              <span>Next-Gen Hiring, BGV & HRMS Platform</span>
             </motion.div>
 
-            <motion.h1 variants={fadeIn} className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter mb-6 text-slate-900 leading-[1.1]">
+            <motion.h1 variants={fadeIn} className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter mb-6 text-slate-900 leading-[1.1]">
               The smartest way to <br />
-              <span className="text-gradient">hire and verify.</span>
+              <span className="text-gradient">hire, verify & manage.</span>
             </motion.h1>
 
             <motion.p variants={fadeIn} className="mt-4 text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed font-medium">
-              Seamlessly connect AI screening, Applicant Tracking, 4-round interviews, and instant BGV into one unified, intelligent flow.
+              Seamlessly connect AI screening, Applicant Tracking, multi-round interviews, instant BGV, and HRMS auto-onboarding into one unified, intelligent flow.
             </motion.p>
 
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-600/40 hover:-translate-y-1">
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-600/40">
                 Start Hiring Flow
                 <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="bg-white hover:bg-surface-100 text-slate-800 px-8 py-4 rounded-2xl text-lg font-bold transition-all flex items-center justify-center gap-2 border border-surface-200 shadow-xl shadow-slate-200/50 hover:-translate-y-1">
+              </motion.button>
+              <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="bg-white hover:bg-surface-100 text-slate-800 px-8 py-4 rounded-2xl text-lg font-bold transition-all flex items-center justify-center gap-2 border border-surface-200 shadow-xl shadow-slate-200/50">
                 <Search className="w-5 h-5 text-accent-500" />
                 Find Jobs (Seeker)
-              </button>
+              </motion.button>
             </motion.div>
 
             <motion.div variants={fadeIn} className="flex items-center justify-center gap-6 mt-8 text-sm text-slate-500">
@@ -169,7 +190,7 @@ export default function HomePage() {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Path 1 - Job Portal */}
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="group">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, type: "spring", stiffness: 80 }} whileHover={{ y: -4 }} className="group">
               <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] transition-all duration-500 relative overflow-hidden">
                 {/* Decorative gradient orb */}
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-indigo-400/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
@@ -198,25 +219,30 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  {/* Steps */}
-                  <div className="space-y-1">
-                    {[
-                      { step: "Apply", desc: "Seeker registers & uploads resume" },
-                      { step: "AI Screen", desc: "Bulk AI scoring against JD" },
-                      { step: "Shortlist", desc: "Top candidates auto-shortlisted" },
-                      { step: "Interview", desc: "4 rounds: Tech → Manager → HR → Final" },
-                      { step: "Hired", desc: "Offer extended & accepted" },
-                      { step: "BGV", desc: "Verification starts automatically" }
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-4 p-3 rounded-xl hover:bg-blue-50/50 transition-colors group/item">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-black shadow-md shadow-blue-500/20 flex-shrink-0">{i + 1}</div>
-                        <div className="flex-1 flex items-baseline gap-2">
-                          <span className="text-sm font-bold text-slate-900">{item.step}</span>
-                          <span className="text-xs text-slate-400 font-medium">{item.desc}</span>
+                  {/* Steps with connecting line */}
+                  <div className="relative">
+                    {/* Vertical connecting line - centered on circles */}
+                    <div className="absolute left-[22px] top-[28px] bottom-[28px] w-[2px] bg-gradient-to-b from-blue-300 via-indigo-300 to-blue-300 rounded-full" />
+                    
+                    <div className="space-y-0">
+                      {[
+                        { step: "Apply", desc: "Seeker registers & uploads resume" },
+                        { step: "AI Screen", desc: "Bulk AI scoring against JD" },
+                        { step: "Shortlist", desc: "Top candidates auto-shortlisted" },
+                        { step: "Interview", desc: "Rounds: Tech → Manager → HR → Final" },
+                        { step: "Hired", desc: "Offer extended & accepted" },
+                        { step: "BGV", desc: "Verification starts automatically" }
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center gap-4 py-3 px-1 rounded-xl hover:bg-blue-50/50 transition-colors group/item relative">
+                          <div className="w-[36px] h-[36px] rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-black shadow-md shadow-blue-500/20 flex-shrink-0 relative z-10 ring-[3px] ring-white">{i + 1}</div>
+                          <div className="flex-1 flex items-baseline gap-2">
+                            <span className="text-sm font-bold text-slate-900">{item.step}</span>
+                            <span className="text-xs text-slate-400 font-medium">{item.desc}</span>
+                          </div>
+                          {i === 5 ? <ShieldCheck className="w-4 h-4 text-green-500 flex-shrink-0" /> : <ChevronRight className="w-3.5 h-3.5 text-slate-200 flex-shrink-0 group-hover/item:text-blue-400 transition-colors" />}
                         </div>
-                        {i === 5 ? <ShieldCheck className="w-4 h-4 text-green-500 flex-shrink-0" /> : <ChevronRight className="w-3.5 h-3.5 text-slate-200 flex-shrink-0 group-hover/item:text-blue-400 transition-colors" />}
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
 
                   <div className="mt-6 pt-5 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-400 font-medium">
@@ -227,7 +253,7 @@ export default function HomePage() {
             </motion.div>
 
             {/* Path 2 - External */}
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="group">
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.15, duration: 0.7, type: "spring", stiffness: 80 }} whileHover={{ y: -4 }} className="group">
               <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(99,102,241,0.15)] transition-all duration-500 relative overflow-hidden">
                 <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-indigo-400/20 to-purple-400/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
                 
@@ -250,57 +276,61 @@ export default function HomePage() {
                     <p className="text-sm text-slate-600">Upload JD + external resumes → AI ranks them → Choose your path below:</p>
                   </div>
 
-                  {/* Option A */}
-                  <div className="mb-4 p-5 rounded-2xl bg-gradient-to-r from-blue-50/80 to-indigo-50/60 border border-blue-100 hover:border-blue-200 transition-colors relative overflow-hidden group/card">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-blue-200/20 rounded-full blur-2xl" />
-                    <div className="relative z-10">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white text-[10px] font-black flex items-center justify-center shadow-sm">A</span>
+                  {/* Options with connecting line */}
+                  <div className="relative pl-4">
+                    {/* Vertical connecting line - centered on circles */}
+                    <div className="absolute left-[17px] top-[30px] bottom-[30px] w-[3px] bg-gradient-to-b from-blue-400 via-indigo-400 to-slate-300 rounded-full" />
+
+                    {/* Option A */}
+                    <div className="mb-4 p-5 rounded-2xl bg-gradient-to-r from-blue-50/80 to-indigo-50/60 border border-blue-100 hover:border-blue-200 transition-colors relative overflow-hidden group/card ml-6">
+                      <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white text-[10px] font-black flex items-center justify-center shadow-sm ring-[3px] ring-white z-10">A</div>
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-blue-200/20 rounded-full blur-2xl" />
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-3">
                           <h4 className="text-sm font-black text-slate-900">Direct BGV</h4>
+                          <span className="text-[10px] font-bold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-full">Skip Pipeline</span>
                         </div>
-                        <span className="text-[10px] font-bold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-full">Skip Pipeline</span>
-                      </div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        {['AI Screen', 'Add to BGV', 'Verified'].map((s, idx) => (
-                          <span key={idx} className="flex items-center gap-1.5">
-                            <span className="text-xs font-semibold text-blue-700 bg-white px-2.5 py-1 rounded-lg border border-blue-100 shadow-sm">{s}</span>
-                            {idx < 2 && <ArrowRight className="w-3 h-3 text-blue-300" />}
-                          </span>
-                        ))}
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {['AI Screen', 'Add to BGV', 'Verified'].map((s, idx) => (
+                            <span key={idx} className="flex items-center gap-1.5">
+                              <span className="text-xs font-semibold text-blue-700 bg-white px-2.5 py-1 rounded-lg border border-blue-100 shadow-sm">{s}</span>
+                              {idx < 2 && <ArrowRight className="w-3 h-3 text-blue-300" />}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Option B */}
-                  <div className="mb-4 p-5 rounded-2xl bg-gradient-to-r from-indigo-50/80 to-purple-50/60 border border-indigo-100 hover:border-indigo-200 transition-colors relative overflow-hidden group/card">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-200/20 rounded-full blur-2xl" />
-                    <div className="relative z-10">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-white text-[10px] font-black flex items-center justify-center shadow-sm">B</span>
+                    {/* Option B */}
+                    <div className="mb-4 p-5 rounded-2xl bg-gradient-to-r from-indigo-50/80 to-purple-50/60 border border-indigo-100 hover:border-indigo-200 transition-colors relative overflow-hidden group/card ml-6">
+                      <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-white text-[10px] font-black flex items-center justify-center shadow-sm ring-[3px] ring-white z-10">B</div>
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-200/20 rounded-full blur-2xl" />
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-3">
                           <h4 className="text-sm font-black text-slate-900">Full Pipeline</h4>
+                          <span className="text-[10px] font-bold text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded-full">With Interviews</span>
                         </div>
-                        <span className="text-[10px] font-bold text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded-full">With Interviews</span>
-                      </div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        {['AI Screen', 'Job', 'Shortlist', 'Interview', 'BGV'].map((s, idx) => (
-                          <span key={idx} className="flex items-center gap-1.5">
-                            <span className="text-xs font-semibold text-indigo-700 bg-white px-2.5 py-1 rounded-lg border border-indigo-100 shadow-sm">{s}</span>
-                            {idx < 4 && <ArrowRight className="w-3 h-3 text-indigo-300" />}
-                          </span>
-                        ))}
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {['AI Screen', 'Job', 'Shortlist', 'Interview', 'BGV'].map((s, idx) => (
+                            <span key={idx} className="flex items-center gap-1.5">
+                              <span className="text-xs font-semibold text-indigo-700 bg-white px-2.5 py-1 rounded-lg border border-indigo-100 shadow-sm">{s}</span>
+                              {idx < 4 && <ArrowRight className="w-3 h-3 text-indigo-300" />}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Self-Verification */}
-                  <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-100 hover:border-slate-200 transition-colors">
-                    <div className="flex items-center gap-2.5 mb-1.5">
-                      <Globe className="w-4 h-4 text-slate-500" />
-                      <h4 className="text-sm font-bold text-slate-700">Self-Verification Portal</h4>
+                    {/* Self-Verification */}
+                    <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-100 hover:border-slate-200 transition-colors relative ml-6">
+                      <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-gradient-to-br from-slate-400 to-slate-500 text-white flex items-center justify-center shadow-sm ring-[3px] ring-white z-10">
+                        <Globe className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex items-center gap-2.5 mb-1.5">
+                        <h4 className="text-sm font-bold text-slate-700">Self-Verification Portal</h4>
+                      </div>
+                      <p className="text-xs text-slate-500">Send link → Candidate fills consent & uploads → Auto-verify via API</p>
                     </div>
-                    <p className="text-xs text-slate-500 pl-6">Send link → Candidate fills consent & uploads → Auto-verify via API</p>
                   </div>
 
                   <div className="mt-6 pt-5 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-400 font-medium">
@@ -402,85 +432,170 @@ export default function HomePage() {
 
 
       {/* Feature Deep Dive: ATS & Interviews */}
-      <section id="ats" className="py-24 bg-slate-900 text-white relative overflow-hidden">
-        {/* Dark aesthetic for just this section to make it pop, but totally different vibe */}
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          <div className="text-center mb-20">
-            <h2 className="text-4xl sm:text-5xl font-black mb-6">
-              Powerful ATS & <span className="text-brand-400">Interview Management</span>
+      {/* ATS & Interview Management - Enhanced */}
+      {/* ATS & Interview Management - Premium */}
+      <section id="ats" className="py-20 relative overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950" />
+        <div className="absolute inset-0">
+          <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[80px]" />
+          <div className="absolute bottom-[10%] right-[5%] w-[250px] h-[250px] bg-indigo-500/10 rounded-full blur-[60px]" />
+          <div className="absolute top-[50%] left-[50%] w-[200px] h-[200px] bg-purple-500/5 rounded-full blur-[60px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Header */}
+          <div className="text-center mb-14">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-blue-300 text-xs font-bold border border-white/10 backdrop-blur-sm mb-5">
+              <GitMerge className="w-3.5 h-3.5" /> Complete Hiring Pipeline
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
+              Powerful ATS & <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Interview Management</span>
             </h2>
-            <p className="text-xl text-slate-400 font-medium max-w-3xl mx-auto">
-              A comprehensive Kanban pipeline integrated directly with a 4-round structured interview process.
+            <p className="text-base text-blue-200/60 max-w-2xl mx-auto">
+              A comprehensive Kanban pipeline with multi-round structured interviews, AI scoring, and automatic BGV trigger on hire.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Kanban Mockup */}
-            <div className="lg:col-span-8 bg-slate-800/50 backdrop-blur-xl border border-slate-700 rounded-[2rem] p-6 sm:p-8">
-              <div className="flex gap-4 overflow-x-auto pb-4 snap-x scrollbar-hide">
-                {['Applied', 'Resume Shortlist', 'Tech Interview', 'HR Round'].map((stage, idx) => (
-                  <div key={stage} className="min-w-[280px] flex-1 bg-slate-800/80 rounded-2xl p-4 border border-slate-700/50 snap-center">
-                    <div className="flex justify-between items-center mb-4">
-                      <h4 className="font-bold text-slate-300">{stage}</h4>
-                      <span className="bg-slate-700 text-slate-300 text-xs px-2 py-1 rounded-md font-bold">{3 - idx}</span>
-                    </div>
-
-                    {/* Mock Card */}
-                    {idx < 3 && (
-                      <div className="bg-slate-700/50 hover:bg-slate-600/50 transition-colors p-4 rounded-xl border border-slate-600 cursor-grab mb-3">
-                        <div className="flex justify-between items-start mb-3">
-                          <h5 className="font-bold">Sarah Jenkins</h5>
-                          {idx === 1 && <span className="text-xs bg-brand-500/20 text-brand-300 px-2 py-1 rounded font-bold">94% Match</span>}
-                        </div>
-                        <p className="text-xs text-slate-400 mb-4">Frontend Engineer • 5y exp</p>
-                        <div className="flex justify-between items-center">
-                          <div className="flex -space-x-2">
-                            <div className="w-6 h-6 rounded-full bg-accent-500 border border-slate-700"></div>
-                            <div className="w-6 h-6 rounded-full bg-brand-500 border border-slate-700"></div>
-                          </div>
-                          <span className="text-xs font-bold text-brand-400 flex items-center gap-1">Move <ChevronRight className="w-3 h-3" /></span>
-                        </div>
+          {/* Main Content - Split Layout */}
+          <div className="grid lg:grid-cols-5 gap-8 mb-14">
+            {/* Left - Kanban Pipeline (3 cols) */}
+            <div className="lg:col-span-3">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
+                <div className="flex items-center justify-between mb-5">
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2"><GitMerge className="w-4 h-4 text-blue-400" /> Pipeline View</h3>
+                  <span className="text-[10px] text-blue-300/60 font-medium">Drag & drop candidates between stages</span>
+                </div>
+                <div className="flex gap-3 overflow-x-auto pb-2 hide-scrollbar">
+                  {[
+                    { name: "Applied", count: 12, candidates: [{ name: "Priya Sharma", role: "Full Stack Dev", score: null }] },
+                    { name: "AI Screened", count: 8, candidates: [{ name: "Rahul Verma", role: "React Engineer", score: "96%" }] },
+                    { name: "Tech Round", count: 5, candidates: [{ name: "Sarah Jenkins", role: "Frontend Dev", score: "94%" }] },
+                    { name: "HR Round", count: 3, candidates: [{ name: "Alex Chen", role: "Backend Dev", score: null }] },
+                    { name: "Hired", count: 2, candidates: [] }
+                  ].map((col, idx) => (
+                    <div key={idx} className="min-w-[160px] flex-1">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-xs font-bold text-slate-300">{col.name}</span>
+                        <span className="text-[10px] bg-white/10 text-slate-400 px-1.5 py-0.5 rounded font-bold">{col.count}</span>
                       </div>
-                    )}
-                  </div>
-                ))}
+                      {col.candidates.map((c, ci) => (
+                        <div key={ci} className="bg-white/[0.07] hover:bg-white/[0.12] border border-white/10 rounded-xl p-3 transition-colors cursor-grab">
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="text-xs font-bold text-white">{c.name}</span>
+                            {c.score && <span className="text-[9px] bg-blue-500/20 text-blue-300 px-1.5 py-0.5 rounded font-bold">{c.score}</span>}
+                          </div>
+                          <p className="text-[10px] text-slate-400">{c.role}</p>
+                          <div className="flex items-center justify-between mt-2">
+                            <div className="flex -space-x-1">
+                              <div className="w-4 h-4 rounded-full bg-blue-500 border border-slate-800"></div>
+                              <div className="w-4 h-4 rounded-full bg-indigo-500 border border-slate-800"></div>
+                            </div>
+                            <span className="text-[9px] text-blue-400 font-bold flex items-center gap-0.5">Move <ChevronRight className="w-2.5 h-2.5" /></span>
+                          </div>
+                        </div>
+                      ))}
+                      {col.candidates.length === 0 && (
+                        <div className="border border-dashed border-white/10 rounded-xl p-3 text-center">
+                          <span className="text-[10px] text-slate-500">Drop here</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Feature List */}
-            <div className="lg:col-span-4 flex flex-col justify-center">
-              <div className="space-y-8">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <GitMerge className="w-6 h-6 text-brand-400" />
-                    <h3 className="text-2xl font-bold">Multi-Stage Pipeline</h3>
+            {/* Right - Features (2 cols) */}
+            <div className="lg:col-span-2 flex flex-col gap-4">
+              {[
+                { icon: <Brain className="w-5 h-5 text-blue-400" />, title: "AI-Powered Screening", desc: "Bulk score 100+ resumes against JD. Auto-rank and shortlist top candidates.", tag: "AI" },
+                { icon: <Users className="w-5 h-5 text-indigo-400" />, title: "Dynamic Interviews", desc: "Configurable rounds as needed. Star ratings, feedback capture, flexible enforcement.", tag: "FLEXIBLE" },
+                { icon: <Star className="w-5 h-5 text-amber-400" />, title: "Smart Offer & Hire", desc: "One-click offer extension. Mark as Hired triggers automatic BGV initiation.", tag: "AUTO" },
+                { icon: <ShieldCheck className="w-5 h-5 text-green-400" />, title: "BGV Auto-Trigger", desc: "Hired → BGV starts instantly. No manual steps. Real-time status tracking.", tag: "SEAMLESS" }
+              ].map((f, i) => (
+                <div key={i} className="bg-white/[0.05] backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:bg-white/[0.08] transition-colors group">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      {f.icon}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="text-sm font-bold text-white">{f.title}</h4>
+                        <span className="text-[9px] font-bold text-blue-300 bg-blue-500/20 px-1.5 py-0.5 rounded">{f.tag}</span>
+                      </div>
+                      <p className="text-xs text-slate-400 leading-relaxed">{f.desc}</p>
+                    </div>
                   </div>
-                  <p className="text-slate-400 font-medium">Customizable stages with bulk-move capabilities. Single-click candidate advancement triggers auto-navigation to the next stage.</p>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <Users className="w-6 h-6 text-brand-400" />
-                    <h3 className="text-2xl font-bold">4-Round Interviews</h3>
+          {/* Interview Rounds Visual */}
+          <div className="bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+            <h3 className="text-lg font-bold text-white mb-2 text-center">Dynamic Interview Rounds</h3>
+            <p className="text-xs text-slate-400 text-center mb-6">Configure as many rounds as needed — here is a typical flow:</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { round: "Round 1", title: "Technical", desc: "Coding & system design assessment", icon: <Brain className="w-6 h-6" />, color: "from-blue-500 to-blue-600" },
+                { round: "Round 2", title: "Manager", desc: "Team fit & leadership evaluation", icon: <Users className="w-6 h-6" />, color: "from-indigo-500 to-indigo-600" },
+                { round: "Round 3", title: "HR", desc: "Culture fit & compensation discussion", icon: <UserCheck className="w-6 h-6" />, color: "from-purple-500 to-purple-600" },
+                { round: "Round 4", title: "Final", desc: "Executive approval & offer decision", icon: <Star className="w-6 h-6" />, color: "from-amber-500 to-orange-500" }
+              ].map((r, i) => (
+                <div key={i} className="text-center group">
+                  <div className={`w-14 h-14 bg-gradient-to-br ${r.color} rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg text-white group-hover:scale-110 transition-transform`}>
+                    {r.icon}
                   </div>
-                  <p className="text-slate-400 font-medium">Sequential enforcement: Tech → Manager → HR → Final. Assign interviewers, collect 1-5 star ratings, and capture detailed feedback.</p>
+                  <span className="text-[10px] text-blue-300/60 font-bold uppercase">{r.round}</span>
+                  <h4 className="text-sm font-bold text-white mt-0.5">{r.title}</h4>
+                  <p className="text-[11px] text-slate-400 mt-1">{r.desc}</p>
                 </div>
+              ))}
+            </div>
 
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <Star className="w-6 h-6 text-brand-400" />
-                    <h3 className="text-2xl font-bold">Offer & Hire</h3>
-                  </div>
-                  <p className="text-slate-400 font-medium">Extend offers flexibly after passed rounds. Click "Mark as Hired" to instantly initiate Background Verification.</p>
+            {/* Rating system preview */}
+            <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-center gap-8 flex-wrap">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(s => <Star key={s} className={`w-3.5 h-3.5 ${s <= 4 ? 'text-amber-400 fill-amber-400' : 'text-slate-600'}`} />)}
                 </div>
+                <span className="text-xs text-slate-400">Star Ratings</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400" />
+                <span className="text-xs text-slate-400">Detailed Feedback</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Activity className="w-4 h-4 text-blue-400" />
+                <span className="text-xs text-slate-400">Progress Tracking</span>
               </div>
             </div>
           </div>
 
+          {/* Candidate Journey */}
+          <div className="mt-10 bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+            <h4 className="text-sm font-bold text-white mb-4 text-center">Complete Journey: Application → Verified Employee</h4>
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              {[
+                { label: "Apply", color: "bg-blue-500" },
+                { label: "AI Screen", color: "bg-indigo-500" },
+                { label: "Interview", color: "bg-purple-500" },
+                { label: "Offer", color: "bg-amber-500" },
+                { label: "BGV", color: "bg-cyan-500" },
+                { label: "HRMS", color: "bg-green-500" }
+              ].map((s, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <span className={`${s.color} text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-md`}>{s.label}</span>
+                  {i < 5 && <ArrowRight className="w-3.5 h-3.5 text-slate-500" />}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
 
       {/* How BGV Verification Works */}
       <section className="py-16 bg-white">
@@ -504,13 +619,13 @@ export default function HomePage() {
                 { icon: <Brain className="w-8 h-8 text-white" />, gradient: "from-purple-500 to-pink-600", title: "AI Verification", desc: "Our AI engine processes and verifies information across multiple databases" },
                 { icon: <FileText className="w-8 h-8 text-white" />, gradient: "from-green-500 to-emerald-600", title: "Instant Reports", desc: "Download comprehensive BGV reports instantly in multiple formats" }
               ].map((step, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="text-center">
-                  <div className="relative inline-block mb-5">
+                <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15, type: "spring", stiffness: 100 }} className="text-center">
+                  <motion.div whileHover={{ y: -5, rotate: 5 }} transition={{ type: "spring", stiffness: 300 }} className="relative inline-block mb-5">
                     <div className={`w-16 h-16 bg-gradient-to-br ${step.gradient} rounded-2xl flex items-center justify-center shadow-xl mx-auto`}>
                       {step.icon}
                     </div>
                     <div className="absolute -top-2 -right-2 w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center text-slate-900 text-xs font-black shadow-md">{i + 1}</div>
-                  </div>
+                  </motion.div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
                   <p className="text-sm text-slate-500">{step.desc}</p>
                 </motion.div>
@@ -569,29 +684,29 @@ export default function HomePage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
                 { icon: <FileSearch className="w-6 h-6 text-white" />, title: "AI Resume Screening", badge: "HOT", badgeColor: "bg-yellow-400 text-slate-900", desc: "Upload 100+ resumes, get top 10-20 candidates with JD matching in 60 seconds", features: ["Bulk Processing", "95% Accuracy"], gradient: "from-blue-500 to-indigo-600" },
                 { icon: <FileText className="w-6 h-6 text-white" />, title: "AI CV Validation", badge: "AI", badgeColor: "bg-yellow-400 text-slate-900", desc: "Advanced fraud detection and authenticity verification with 98% accuracy", features: ["Fraud Detection", "98% Accuracy"], gradient: "from-purple-500 to-pink-600" },
                 { icon: <GraduationCap className="w-6 h-6 text-white" />, title: "AI Education Verification", badge: "AI", badgeColor: "bg-yellow-400 text-slate-900", desc: "Automated validation of educational credentials with AI document analysis", features: ["Document OCR", "24hrs"], gradient: "from-emerald-500 to-teal-600" }
               ].map((service, i) => (
-                <div key={i} className={`bg-gradient-to-br ${service.gradient} rounded-2xl p-6 text-white shadow-2xl hover:scale-[1.03] transition-all duration-300 relative overflow-hidden`}>
+                <motion.div key={i} initial={{ opacity: 0, y: 30, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.15, duration: 0.5 }} whileHover={{ y: -8, transition: { duration: 0.3 } }} className={`bg-gradient-to-br ${service.gradient} rounded-2xl p-6 text-white shadow-2xl transition-all duration-300 relative overflow-hidden cursor-pointer`}>
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
                   <div className="relative z-10">
-                    <div className="flex items-center space-x-3 mb-4">
-                      <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">{service.icon}</div>
+                    <div className="flex items-center space-x-3 mb-3">
+                      <div className="w-11 h-11 bg-white/20 rounded-xl flex items-center justify-center">{service.icon}</div>
                       <div>
-                        <h4 className="text-lg font-bold">{service.title}</h4>
-                        <span className={`${service.badgeColor} px-2 py-0.5 rounded-full text-xs font-bold`}>{service.badge}</span>
+                        <h4 className="text-base font-bold">{service.title}</h4>
+                        <span className={`${service.badgeColor} px-2 py-0.5 rounded-full text-[10px] font-bold`}>{service.badge}</span>
                       </div>
                     </div>
-                    <p className="text-white/90 mb-4 text-sm">{service.desc}</p>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="bg-white/20 px-3 py-1 rounded-full">{service.features[0]}</span>
-                      <span className="font-bold">{service.features[1]}</span>
+                    <p className="text-white/85 mb-4 text-sm leading-relaxed">{service.desc}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-medium">{service.features[0]}</span>
+                      <span className="font-bold text-sm">{service.features[1]}</span>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -740,6 +855,152 @@ export default function HomePage() {
                     Start BGV Process <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* HRMS Auto-Onboarding - After BGV */}
+      <section id="hrms" className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-indigo-50/40 to-white" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-100/30 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-indigo-100/20 rounded-full blur-[80px]" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-blue-700 text-xs font-bold border border-blue-200 shadow-sm mb-5">
+              <UserCheck className="w-4 h-4" /> After BGV Completion → Employee Onboarded
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">HRMS <span className="text-gradient">Auto-Onboarding</span></h2>
+            <p className="text-base text-slate-500 max-w-2xl mx-auto">Once BGV is successfully completed, the candidate is automatically added as an employee in the HRMS system — no manual data entry required.</p>
+          </motion.div>
+
+          {/* Flow indicator */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-center justify-center gap-3 mb-14 flex-wrap">
+            <div className="flex items-center gap-2 px-5 py-2.5 bg-white rounded-full border border-blue-200 shadow-md">
+              <ShieldCheck className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-bold text-blue-700">BGV Completed</span>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-400" />
+            <div className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full shadow-lg shadow-blue-500/20">
+              <UserCheck className="w-4 h-4 text-white" />
+              <span className="text-sm font-bold text-white">Auto-Added to HRMS</span>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-400" />
+            <div className="flex items-center gap-2 px-5 py-2.5 bg-white rounded-full border border-indigo-200 shadow-md">
+              <Sparkles className="w-4 h-4 text-indigo-600" />
+              <span className="text-sm font-bold text-indigo-700">Full Employee Benefits</span>
+            </div>
+          </motion.div>
+
+          {/* HRMS Features - Horizontal Scroll */}
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2"><span className="text-lg">🏢</span> HRMS Features</h3>
+              <div className="hidden sm:flex items-center gap-2 text-sm text-slate-500">
+                <span>← Scroll to explore →</span>
+                <ChevronRight className="w-4 h-4" />
+              </div>
+            </div>
+
+            <div className="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory hide-scrollbar">
+              {[
+                { icon: <UserCheck className="w-6 h-6 text-white" />, gradient: "from-blue-500 to-blue-600", title: "Auto Employee Creation", desc: "Candidate data flows directly into HRMS as a new employee record after BGV clearance" },
+                { icon: <FileText className="w-6 h-6 text-white" />, gradient: "from-green-500 to-emerald-600", title: "Document Management", desc: "All verified documents (PAN, Aadhaar, education) auto-attached to employee profile" },
+                { icon: <CreditCard className="w-6 h-6 text-white" />, gradient: "from-purple-500 to-indigo-600", title: "Payroll Integration", desc: "Bank details, PAN, UAN auto-linked for seamless payroll setup from day one" },
+                { icon: <Clock className="w-6 h-6 text-white" />, gradient: "from-amber-500 to-orange-600", title: "Attendance & Leave", desc: "Employee immediately gets access to attendance tracking and leave management" },
+                { icon: <Activity className="w-6 h-6 text-white" />, gradient: "from-cyan-500 to-blue-600", title: "Performance Tracking", desc: "Goals, KPIs, and review cycles auto-configured based on role and department" },
+                { icon: <Globe className="w-6 h-6 text-white" />, gradient: "from-indigo-500 to-purple-600", title: "Self-Service Portal", desc: "Employee gets instant access to payslips, tax declarations, and HR requests" }
+              ].map((feature, i) => (
+                <div key={i} className="flex-shrink-0 w-72 bg-white rounded-xl p-6 border-2 border-slate-100 shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300 snap-start">
+                  <div className={`w-12 h-12 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-4 shadow-lg`}>
+                    {feature.icon}
+                  </div>
+                  <h4 className="text-base font-bold text-slate-900 mb-2">{feature.title}</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">{feature.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-center mt-4 space-x-2">
+              <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+              <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
+              <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
+            </div>
+          </div>
+
+          {/* Stats bar */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 rounded-2xl p-8 text-white shadow-xl shadow-blue-600/20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              {[
+                { val: "Zero", label: "Manual Data Entry" },
+                { val: "100%", label: "Data Accuracy" },
+                { val: "Instant", label: "Employee Access" },
+                { val: "Seamless", label: "BGV → HRMS Flow" }
+              ].map((s, i) => (
+                <div key={i}>
+                  <div className="text-2xl font-black">{s.val}</div>
+                  <div className="text-sm text-blue-100">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Final CTA - Start Your Journey */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-x-1/3 translate-y-1/3" />
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8">
+            <h2 className="text-3xl sm:text-5xl font-black leading-tight">
+              Start Your AI-Powered<br />Hiring & Verification Journey
+            </h2>
+            <p className="text-lg text-white/80 max-w-2xl mx-auto">
+              Experience the complete flow — AI screening, structured interviews, instant BGV, and seamless HRMS onboarding. All in one platform.
+            </p>
+
+            {/* Feature highlights */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {[
+                { label: "AI Screening", icon: <Brain className="w-3.5 h-3.5" /> },
+                { label: "Dynamic Interviews", icon: <Users className="w-3.5 h-3.5" /> },
+                { label: "Instant BGV", icon: <ShieldCheck className="w-3.5 h-3.5" /> },
+                { label: "HRMS Onboarding", icon: <UserCheck className="w-3.5 h-3.5" /> }
+              ].map((f, i) => (
+                <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
+                  {f.icon} {f.label}
+                </span>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="px-8 py-4 bg-white text-blue-600 font-bold rounded-2xl hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-2 text-lg">
+                Start Free Trial <ArrowRight className="w-5 h-5" />
+              </button>
+              <button className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-2xl border-2 border-white/30 hover:bg-white/20 transition-all duration-300 inline-flex items-center justify-center gap-2 text-lg">
+                <Search className="w-5 h-5" /> Schedule Demo
+              </button>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="flex items-center justify-center gap-6 text-sm text-white/70 flex-wrap">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>No Credit Card Required</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Enterprise Security</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Clock className="w-4 h-4" />
+                <span>Setup in Minutes</span>
               </div>
             </div>
           </motion.div>
