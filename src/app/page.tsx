@@ -192,9 +192,9 @@ export default function HomePage() {
               { problem: "Manual resume screening takes weeks", solution: "AI screens 100+ resumes in 60 seconds", icon: <Brain className="w-5 h-5" />, color: "blue" },
               { problem: "BGV takes 15-30 days with vendors", solution: "Instant API checks + 48hr full report", icon: <ShieldCheck className="w-5 h-5" />, color: "indigo" },
               { problem: "Fake resumes slip through undetected", solution: "98% fraud detection with ML models", icon: <FileSearch className="w-5 h-5" />, color: "purple" },
-              { problem: "No single platform for hire-to-onboard", solution: "Hiring → BGV → HRMS in one flow", icon: <GitMerge className="w-5 h-5" />, color: "cyan" },
-              { problem: "Manual data entry causes errors", solution: "Zero manual entry, auto data flow", icon: <Activity className="w-5 h-5" />, color: "amber" },
-              { problem: "Candidates drop off due to slow process", solution: "Self-verification portal for candidates", icon: <Globe className="w-5 h-5" />, color: "green" }
+              { problem: "Unstructured interview process", solution: "Dynamic multi-round interviews with ratings", icon: <Users className="w-5 h-5" />, color: "cyan" },
+              { problem: "Manual onboarding after hire takes days", solution: "BGV done → Auto-added to HRMS instantly", icon: <UserCheck className="w-5 h-5" />, color: "amber" },
+              { problem: "Hard to find right candidates for roles", solution: "TFG Jobs portal brings candidates directly to you", icon: <Briefcase className="w-5 h-5" />, color: "green" }
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-all group"
