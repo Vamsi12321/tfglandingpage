@@ -1078,6 +1078,71 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Built for Enterprise Scale */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-indigo-700 text-xs font-bold border border-indigo-100 shadow-sm mb-5">
+              <Sparkles className="w-3.5 h-3.5" /> Enterprise Platform
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">Built for <span className="text-gradient">Enterprise Scale</span></h2>
+            <p className="text-base text-slate-500 max-w-2xl mx-auto">Comprehensive hiring, verification & HRMS platform designed to handle enterprise-level requirements with advanced features and integrations</p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "AI-Powered Intelligence",
+                items: [
+                  { name: "Resume Screening AI", desc: "Bulk processing with JD matching" },
+                  { name: "Fraud Detection ML", desc: "98% accuracy in authenticity verification" },
+                  { name: "Document Analysis", desc: "Automated credential validation" },
+                  { name: "Risk Assessment", desc: "Intelligent scoring algorithms" },
+                  { name: "Smart Recommendations", desc: "AI-driven candidate ranking" }
+                ]
+              },
+              {
+                title: "Verification Services",
+                items: [
+                  { name: "PAN & Aadhaar Verification", desc: "Government database validation" },
+                  { name: "Employment History", desc: "Comprehensive background checks" },
+                  { name: "Court Record Search", desc: "Criminal and civil records" },
+                  { name: "Credit Report Analysis", desc: "Financial background verification" },
+                  { name: "Address Verification", desc: "Field agent physical verification" }
+                ]
+              },
+              {
+                title: "Enterprise Platform",
+                items: [
+                  { name: "Multi-Organization Support", desc: "Manage multiple entities" },
+                  { name: "Role-Based Access Control", desc: "Granular permissions system" },
+                  { name: "Real-Time Dashboards", desc: "Live analytics and reporting" },
+                  { name: "API Integration", desc: "Seamless system connectivity" },
+                  { name: "HRMS Auto-Onboarding", desc: "BGV → Employee in one click" }
+                ]
+              }
+            ].map((category, index) => (
+              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-2xl p-7 border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300"
+              >
+                <h3 className="text-lg font-bold text-slate-900 mb-5 pb-3 border-b border-slate-100">{category.title}</h3>
+                <div className="space-y-4">
+                  {category.items.map((item, itemIndex) => (
+                    <div key={itemIndex} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0" />
+                      <div>
+                        <div className="text-sm font-semibold text-slate-900">{item.name}</div>
+                        <div className="text-xs text-slate-500">{item.desc}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA - Start Your Journey */}
       <section className="py-20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10" />
