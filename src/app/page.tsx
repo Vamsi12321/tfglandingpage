@@ -176,6 +176,62 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Problem → Solution Section */}
+      <section className="py-16 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-600 text-xs font-bold border border-red-100 mb-4">
+              <XCircle className="w-3.5 h-3.5" /> Industry Problems We Solve
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3">Traditional Hiring is <span className="text-red-500">Broken</span></h2>
+            <p className="text-sm text-slate-500 max-w-xl mx-auto">Companies lose time, money, and quality hires due to fragmented processes. Here is how TFG fixes it.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              { problem: "Manual resume screening takes weeks", solution: "AI screens 100+ resumes in 60 seconds", icon: <Brain className="w-5 h-5" />, color: "blue" },
+              { problem: "BGV takes 15-30 days with vendors", solution: "Instant API checks + 48hr full report", icon: <ShieldCheck className="w-5 h-5" />, color: "indigo" },
+              { problem: "Fake resumes slip through undetected", solution: "98% fraud detection with ML models", icon: <FileSearch className="w-5 h-5" />, color: "purple" },
+              { problem: "No single platform for hire-to-onboard", solution: "Hiring → BGV → HRMS in one flow", icon: <GitMerge className="w-5 h-5" />, color: "cyan" },
+              { problem: "Manual data entry causes errors", solution: "Zero manual entry, auto data flow", icon: <Activity className="w-5 h-5" />, color: "amber" },
+              { problem: "Candidates drop off due to slow process", solution: "Self-verification portal for candidates", icon: <Globe className="w-5 h-5" />, color: "green" }
+            ].map((item, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-all group"
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
+                    <XCircle className="w-4 h-4 text-red-400" />
+                  </div>
+                  <p className="text-sm text-red-500 font-medium">{item.problem}</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className={`w-8 h-8 rounded-lg bg-${item.color}-50 flex items-center justify-center flex-shrink-0 text-${item.color}-600`}>
+                    {item.icon}
+                  </div>
+                  <p className="text-sm text-slate-900 font-bold">{item.solution}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Stats bar */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { val: "10x", label: "Faster Hiring", color: "text-blue-600" },
+              { val: "95%", label: "Cost Reduction in BGV", color: "text-indigo-600" },
+              { val: "Zero", label: "Manual Errors", color: "text-purple-600" },
+              { val: "48hrs", label: "Complete BGV Report", color: "text-green-600" }
+            ].map((s, i) => (
+              <div key={i} className="text-center p-4 bg-slate-50 rounded-xl border border-slate-100">
+                <div className={`text-2xl font-black ${s.color}`}>{s.val}</div>
+                <div className="text-xs text-slate-500 font-medium mt-0.5">{s.label}</div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* Two Hiring Paths - Premium */}
       <section id="flow" className="py-20 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 via-white to-blue-50/30" />
@@ -322,14 +378,25 @@ export default function HomePage() {
                     </div>
 
                     {/* Self-Verification */}
-                    <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-100 hover:border-slate-200 transition-colors relative ml-6">
-                      <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-gradient-to-br from-slate-400 to-slate-500 text-white flex items-center justify-center shadow-sm ring-[3px] ring-white z-10">
+                    <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-50/80 via-indigo-50/60 to-purple-50/40 border border-blue-100 hover:border-blue-200 transition-colors relative ml-6 overflow-hidden">
+                      <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center shadow-md ring-[3px] ring-white z-10">
                         <Globe className="w-3.5 h-3.5" />
                       </div>
-                      <div className="flex items-center gap-2.5 mb-1.5">
-                        <h4 className="text-sm font-bold text-slate-700">Self-Verification Portal</h4>
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-200/20 rounded-full blur-2xl" />
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="text-sm font-black text-slate-900">Self-Verification Portal</h4>
+                          <span className="text-[10px] font-bold text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded-full">Parallel Process</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          {['Send Link', 'Candidate Fills', 'Auto-Verify'].map((s, idx) => (
+                            <span key={idx} className="flex items-center gap-1.5">
+                              <span className="text-xs font-semibold text-indigo-700 bg-white px-2.5 py-1 rounded-lg border border-indigo-100 shadow-sm">{s}</span>
+                              {idx < 2 && <ArrowRight className="w-3 h-3 text-indigo-300" />}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <p className="text-xs text-slate-500">Send link → Candidate fills consent & uploads → Auto-verify via API</p>
                     </div>
                   </div>
 
@@ -431,10 +498,7 @@ export default function HomePage() {
       </section>
 
 
-      {/* Feature Deep Dive: ATS & Interviews */}
-
-      {/* ATS & Interview Management - Enhanced */}
-      {/* ATS & Interview Management - Premium */}
+      {/* ATS & Interview Management */}
       <section id="ats" className="py-20 relative overflow-hidden">
         {/* Gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950" />
@@ -662,7 +726,7 @@ export default function HomePage() {
               transition={{ delay: 0.1 }}
               className="text-4xl sm:text-6xl font-black mb-6 text-slate-900 tracking-tight"
             >
-              12+ Professional <span className="text-gradient">Services</span>
+              Professional <span className="text-gradient">Services</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -861,134 +925,148 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Un-Employee to Employee Journey Mapping */}
-      <section className="py-20 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-50/50 rounded-full blur-[80px]" />
+      {/* Candidate to Employee Journey */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/20 to-white" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
-            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 text-xs font-bold border border-blue-200 mb-5">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-indigo-700 text-xs font-bold border border-indigo-200 shadow-sm mb-5">
               <ArrowRight className="w-3.5 h-3.5" /> Complete Transformation
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">From Candidate to <span className="text-gradient">Verified Employee</span></h2>
-            <p className="text-base text-slate-500 max-w-2xl mx-auto">Clear mapping of how an un-employed candidate transforms into a fully verified, onboarded employee with complete benefits through our platform.</p>
+            <p className="text-base text-slate-500 max-w-2xl mx-auto">See how our platform transforms an un-employed candidate into a fully verified, onboarded employee with complete benefits.</p>
           </motion.div>
 
-          {/* Journey Comparison */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-14">
-            {/* Before - Un-Employee */}
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border border-slate-200">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-slate-300 flex items-center justify-center">
-                  <Users className="w-6 h-6 text-slate-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-black text-slate-700">Before: Candidate</h3>
-                  <p className="text-xs text-slate-500">Un-employed / Job Seeker</p>
+          {/* Interactive Timeline Journey */}
+          <div className="relative mb-16">
+            {/* Horizontal line */}
+            <div className="hidden lg:block absolute top-[60px] left-[8%] right-[8%] h-[3px] bg-gradient-to-r from-slate-300 via-blue-400 via-indigo-500 via-purple-500 to-green-500 rounded-full" />
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {[
+                { title: "Candidate", desc: "Applies via portal or referral", icon: <FileText className="w-6 h-6" />, color: "from-slate-400 to-slate-500", ring: "ring-slate-200", status: "Start" },
+                { title: "Screened", desc: "AI scores resume against JD", icon: <Brain className="w-6 h-6" />, color: "from-blue-500 to-blue-600", ring: "ring-blue-200", status: "AI" },
+                { title: "Interviewed", desc: "Multi-round evaluation done", icon: <Users className="w-6 h-6" />, color: "from-indigo-500 to-indigo-600", ring: "ring-indigo-200", status: "Evaluated" },
+                { title: "Selected", desc: "Offer extended & accepted", icon: <Star className="w-6 h-6" />, color: "from-purple-500 to-purple-600", ring: "ring-purple-200", status: "Offered" },
+                { title: "Verified", desc: "BGV completed successfully", icon: <ShieldCheck className="w-6 h-6" />, color: "from-cyan-500 to-teal-500", ring: "ring-cyan-200", status: "BGV ✓" },
+                { title: "Employee", desc: "Auto-onboarded to HRMS", icon: <UserCheck className="w-6 h-6" />, color: "from-green-500 to-emerald-600", ring: "ring-green-200", status: "Active ✓" }
+              ].map((step, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, type: "spring", stiffness: 100 }} className="text-center relative">
+                  <motion.div whileHover={{ scale: 1.15, y: -5 }} transition={{ type: "spring", stiffness: 300 }}
+                    className={`w-[72px] h-[72px] bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-xl text-white relative z-10 ring-4 ${step.ring} cursor-pointer`}
+                  >
+                    {step.icon}
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-sm">
+                      <span className="text-[8px] font-black text-slate-600">{i + 1}</span>
+                    </div>
+                  </motion.div>
+                  <h4 className="text-sm font-black text-slate-900 mb-0.5">{step.title}</h4>
+                  <p className="text-[11px] text-slate-400 mb-1.5">{step.desc}</p>
+                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${i === 5 ? 'bg-green-100 text-green-700' : i === 0 ? 'bg-slate-100 text-slate-500' : 'bg-blue-50 text-blue-600'}`}>{step.status}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Before vs After - Premium Cards */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-14">
+            {/* Before */}
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <div className="h-full bg-white rounded-3xl p-7 border border-slate-200 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-slate-300 to-slate-400 rounded-r-full" />
+                <div className="pl-4">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
+                      <Users className="w-5 h-5 text-slate-500" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-black text-slate-600">Before: Un-Employed Candidate</h3>
+                      <p className="text-[11px] text-slate-400">No verification, no access, no benefits</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      "No verified identity",
+                      "Unverified history",
+                      "No BGV on record",
+                      "No system access",
+                      "No payroll setup",
+                      "No employee ID"
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg">
+                        <XCircle className="w-3.5 h-3.5 text-slate-300 flex-shrink-0" />
+                        <span className="text-xs text-slate-500">{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <ul className="space-y-3">
-                {[
-                  "No verified identity in system",
-                  "Unverified employment history",
-                  "No background check on record",
-                  "No access to company systems",
-                  "No payroll or benefits setup",
-                  "No official employee ID"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-slate-600">
-                    <div className="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center flex-shrink-0">
-                      <XCircle className="w-3 h-3 text-slate-400" />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </motion.div>
 
-            {/* After - Employee */}
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 border border-blue-200 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-blue-200/30 rounded-full blur-2xl" />
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                    <UserCheck className="w-6 h-6 text-white" />
+            {/* After */}
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <div className="h-full bg-white rounded-3xl p-7 border border-blue-200 shadow-[0_4px_20px_-4px_rgba(59,130,246,0.1)] relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-blue-500 via-indigo-500 to-green-500 rounded-r-full" />
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-100/30 rounded-full blur-2xl" />
+                <div className="pl-4 relative z-10">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md">
+                      <UserCheck className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-black text-slate-900">After: Verified Employee</h3>
+                      <p className="text-[11px] text-blue-600 font-semibold">Fully onboarded with all benefits</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-black text-slate-900">After: Verified Employee</h3>
-                    <p className="text-xs text-blue-600 font-semibold">Fully onboarded & active</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      "Govt-verified identity",
+                      "Confirmed history",
+                      "BGV certificate ready",
+                      "Full HRMS access",
+                      "Payroll configured",
+                      "Employee ID assigned"
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 p-2 bg-blue-50/60 rounded-lg border border-blue-100/50">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
+                        <span className="text-xs text-slate-700 font-medium">{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <ul className="space-y-3">
-                  {[
-                    "PAN, Aadhaar, UAN verified via govt APIs",
-                    "Employment history confirmed & documented",
-                    "Complete BGV certificate generated",
-                    "Full HRMS access with self-service portal",
-                    "Payroll, attendance & leave auto-configured",
-                    "Official employee ID & department assigned"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm text-slate-700">
-                      <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                        <CheckCircle2 className="w-3 h-3 text-blue-600" />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </motion.div>
           </div>
 
-          {/* Transformation Steps */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-3xl border border-slate-200 p-8 shadow-lg">
-            <h3 className="text-lg font-black text-slate-900 text-center mb-8">How the Platform Transforms a Candidate into an Employee</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {[
-                { step: "1", title: "Apply", desc: "Candidate registers on portal", icon: <FileText className="w-5 h-5 text-white" />, color: "from-slate-500 to-slate-600", status: "Candidate" },
-                { step: "2", title: "AI Screen", desc: "Resume scored by AI engine", icon: <Brain className="w-5 h-5 text-white" />, color: "from-blue-500 to-blue-600", status: "Screened" },
-                { step: "3", title: "Interview", desc: "Multi-round evaluation", icon: <Users className="w-5 h-5 text-white" />, color: "from-indigo-500 to-indigo-600", status: "Evaluated" },
-                { step: "4", title: "Offer", desc: "Offer letter accepted", icon: <Star className="w-5 h-5 text-white" />, color: "from-amber-500 to-orange-500", status: "Selected" },
-                { step: "5", title: "BGV", desc: "Background verified", icon: <ShieldCheck className="w-5 h-5 text-white" />, color: "from-cyan-500 to-teal-500", status: "Verified" },
-                { step: "6", title: "HRMS", desc: "Auto-added as employee", icon: <UserCheck className="w-5 h-5 text-white" />, color: "from-green-500 to-emerald-600", status: "Employee ✓" }
-              ].map((item, i) => (
-                <div key={i} className="text-center">
-                  <div className={`w-11 h-11 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center mx-auto mb-2 shadow-md`}>
-                    {item.icon}
-                  </div>
-                  <h4 className="text-xs font-bold text-slate-900">{item.title}</h4>
-                  <p className="text-[10px] text-slate-500 mb-1">{item.desc}</p>
-                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${i === 5 ? 'bg-green-100 text-green-700' : i === 0 ? 'bg-slate-100 text-slate-600' : 'bg-blue-50 text-blue-600'}`}>{item.status}</span>
-                </div>
-              ))}
+          {/* Benefits Unlocked - Horizontal Scroll */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-black text-slate-900 flex items-center gap-2"><Sparkles className="w-4 h-4 text-amber-500" /> Benefits Unlocked After Onboarding</h3>
+              <span className="hidden sm:flex text-xs text-slate-400 items-center gap-1">← Scroll → <ChevronRight className="w-3 h-3" /></span>
             </div>
-          </motion.div>
-
-          {/* Benefits after becoming employee */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-10">
-            <h3 className="text-lg font-black text-slate-900 text-center mb-6">Employee Benefits Unlocked After Onboarding</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory hide-scrollbar">
               {[
-                { icon: <CreditCard className="w-5 h-5 text-blue-600" />, title: "Payroll Setup", desc: "Salary, PF, ESI auto-configured", bg: "bg-blue-50", border: "border-blue-100" },
-                { icon: <Clock className="w-5 h-5 text-indigo-600" />, title: "Leave Management", desc: "Casual, sick, earned leave access", bg: "bg-indigo-50", border: "border-indigo-100" },
-                { icon: <Activity className="w-5 h-5 text-purple-600" />, title: "Performance Goals", desc: "KPIs & review cycles assigned", bg: "bg-purple-50", border: "border-purple-100" },
-                { icon: <Globe className="w-5 h-5 text-teal-600" />, title: "Self-Service Portal", desc: "Payslips, tax, HR requests", bg: "bg-teal-50", border: "border-teal-100" },
-                { icon: <FileText className="w-5 h-5 text-amber-600" />, title: "Document Vault", desc: "All verified docs stored securely", bg: "bg-amber-50", border: "border-amber-100" },
-                { icon: <ShieldCheck className="w-5 h-5 text-green-600" />, title: "BGV Certificate", desc: "Downloadable verification report", bg: "bg-green-50", border: "border-green-100" },
-                { icon: <Fingerprint className="w-5 h-5 text-rose-600" />, title: "Attendance System", desc: "Biometric & geo-fencing enabled", bg: "bg-rose-50", border: "border-rose-100" },
-                { icon: <Briefcase className="w-5 h-5 text-cyan-600" />, title: "Department Access", desc: "Role-based system permissions", bg: "bg-cyan-50", border: "border-cyan-100" }
+                { icon: <CreditCard className="w-5 h-5 text-white" />, title: "Payroll & PF", desc: "Salary, PF, ESI auto-configured from day one", gradient: "from-blue-500 to-blue-600" },
+                { icon: <Clock className="w-5 h-5 text-white" />, title: "Leave System", desc: "Casual, sick, earned leave management", gradient: "from-indigo-500 to-indigo-600" },
+                { icon: <Activity className="w-5 h-5 text-white" />, title: "Performance", desc: "KPIs, goals & review cycles assigned", gradient: "from-purple-500 to-purple-600" },
+                { icon: <Globe className="w-5 h-5 text-white" />, title: "Self-Service", desc: "Payslips, tax declarations, HR requests", gradient: "from-teal-500 to-teal-600" },
+                { icon: <FileText className="w-5 h-5 text-white" />, title: "Doc Vault", desc: "All verified documents stored securely", gradient: "from-amber-500 to-orange-500" },
+                { icon: <ShieldCheck className="w-5 h-5 text-white" />, title: "BGV Report", desc: "Downloadable verification certificate", gradient: "from-green-500 to-emerald-600" },
+                { icon: <Fingerprint className="w-5 h-5 text-white" />, title: "Attendance", desc: "Biometric & geo-fencing enabled", gradient: "from-rose-500 to-pink-600" },
+                { icon: <Briefcase className="w-5 h-5 text-white" />, title: "Dept Access", desc: "Role-based system permissions", gradient: "from-cyan-500 to-blue-600" }
               ].map((b, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                  className={`${b.bg} border ${b.border} rounded-xl p-4 hover:shadow-md transition-all`}
-                >
-                  <div className="mb-2">{b.icon}</div>
+                <div key={i} className="flex-shrink-0 w-[180px] bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all snap-start">
+                  <div className={`w-10 h-10 bg-gradient-to-br ${b.gradient} rounded-xl flex items-center justify-center mb-3 shadow-md`}>{b.icon}</div>
                   <h4 className="text-sm font-bold text-slate-900 mb-0.5">{b.title}</h4>
-                  <p className="text-[11px] text-slate-500">{b.desc}</p>
-                </motion.div>
+                  <p className="text-[11px] text-slate-500 leading-relaxed">{b.desc}</p>
+                </div>
               ))}
             </div>
           </motion.div>
         </div>
       </section>
+
 
       {/* HRMS Auto-Onboarding - After BGV */}
       <section id="hrms" className="py-20 relative overflow-hidden">
@@ -1078,61 +1156,78 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Built for Enterprise Scale */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Built for Enterprise Scale - Enhanced */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950" />
+        <div className="absolute top-[10%] left-[-5%] w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[80px]" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[250px] h-[250px] bg-indigo-500/10 rounded-full blur-[60px]" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
-            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-indigo-700 text-xs font-bold border border-indigo-100 shadow-sm mb-5">
+            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 text-blue-300 text-xs font-bold border border-white/10 backdrop-blur-sm mb-5">
               <Sparkles className="w-3.5 h-3.5" /> Enterprise Platform
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">Built for <span className="text-gradient">Enterprise Scale</span></h2>
-            <p className="text-base text-slate-500 max-w-2xl mx-auto">Comprehensive hiring, verification & HRMS platform designed to handle enterprise-level requirements with advanced features and integrations</p>
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Built for <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Enterprise Scale</span></h2>
+            <p className="text-base text-blue-200/60 max-w-2xl mx-auto">Comprehensive hiring, verification & HRMS platform with advanced features and integrations</p>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-6">
             {[
               {
                 title: "AI-Powered Intelligence",
+                icon: <Brain className="w-6 h-6 text-white" />,
+                gradient: "from-blue-500 to-indigo-600",
                 items: [
-                  { name: "Resume Screening AI", desc: "Bulk processing with JD matching" },
-                  { name: "Fraud Detection ML", desc: "98% accuracy in authenticity verification" },
-                  { name: "Document Analysis", desc: "Automated credential validation" },
-                  { name: "Risk Assessment", desc: "Intelligent scoring algorithms" },
-                  { name: "Smart Recommendations", desc: "AI-driven candidate ranking" }
+                  { name: "Resume Screening AI", desc: "Bulk processing with JD matching", icon: <FileSearch className="w-4 h-4" /> },
+                  { name: "Fraud Detection ML", desc: "98% accuracy in authenticity verification", icon: <ShieldCheck className="w-4 h-4" /> },
+                  { name: "Document Analysis", desc: "Automated credential validation", icon: <FileText className="w-4 h-4" /> },
+                  { name: "Risk Assessment", desc: "Intelligent scoring algorithms", icon: <Activity className="w-4 h-4" /> },
+                  { name: "Smart Recommendations", desc: "AI-driven candidate ranking", icon: <Star className="w-4 h-4" /> }
                 ]
               },
               {
                 title: "Verification Services",
+                icon: <ShieldCheck className="w-6 h-6 text-white" />,
+                gradient: "from-indigo-500 to-purple-600",
                 items: [
-                  { name: "PAN & Aadhaar Verification", desc: "Government database validation" },
-                  { name: "Employment History", desc: "Comprehensive background checks" },
-                  { name: "Court Record Search", desc: "Criminal and civil records" },
-                  { name: "Credit Report Analysis", desc: "Financial background verification" },
-                  { name: "Address Verification", desc: "Field agent physical verification" }
+                  { name: "PAN & Aadhaar Verification", desc: "Government database validation", icon: <Fingerprint className="w-4 h-4" /> },
+                  { name: "Employment History", desc: "Comprehensive background checks", icon: <Briefcase className="w-4 h-4" /> },
+                  { name: "Court Record Search", desc: "Criminal and civil records", icon: <Scale className="w-4 h-4" /> },
+                  { name: "Credit Report Analysis", desc: "Financial background verification", icon: <CreditCard className="w-4 h-4" /> },
+                  { name: "Address Verification", desc: "Field agent physical verification", icon: <MapPin className="w-4 h-4" /> }
                 ]
               },
               {
                 title: "Enterprise Platform",
+                icon: <Globe className="w-6 h-6 text-white" />,
+                gradient: "from-purple-500 to-pink-600",
                 items: [
-                  { name: "Multi-Organization Support", desc: "Manage multiple entities" },
-                  { name: "Role-Based Access Control", desc: "Granular permissions system" },
-                  { name: "Real-Time Dashboards", desc: "Live analytics and reporting" },
-                  { name: "API Integration", desc: "Seamless system connectivity" },
-                  { name: "HRMS Auto-Onboarding", desc: "BGV → Employee in one click" }
+                  { name: "Multi-Organization Support", desc: "Manage multiple entities", icon: <Users className="w-4 h-4" /> },
+                  { name: "Role-Based Access Control", desc: "Granular permissions system", icon: <ShieldCheck className="w-4 h-4" /> },
+                  { name: "Real-Time Dashboards", desc: "Live analytics and reporting", icon: <Activity className="w-4 h-4" /> },
+                  { name: "API Integration", desc: "Seamless system connectivity", icon: <GitMerge className="w-4 h-4" /> },
+                  { name: "HRMS Auto-Onboarding", desc: "BGV → Employee in one click", icon: <UserCheck className="w-4 h-4" /> }
                 ]
               }
             ].map((category, index) => (
               <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-7 border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300"
+                className="bg-white/[0.05] backdrop-blur-sm rounded-3xl p-7 border border-white/10 hover:bg-white/[0.08] transition-all duration-300"
               >
-                <h3 className="text-lg font-bold text-slate-900 mb-5 pb-3 border-b border-slate-100">{category.title}</h3>
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center shadow-lg`}>
+                    {category.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-white">{category.title}</h3>
+                </div>
                 <div className="space-y-4">
                   {category.items.map((item, itemIndex) => (
-                    <div key={itemIndex} className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0" />
+                    <div key={itemIndex} className="flex items-start gap-3 group/item">
+                      <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 text-blue-300 group-hover/item:bg-white/20 transition-colors">
+                        {item.icon}
+                      </div>
                       <div>
-                        <div className="text-sm font-semibold text-slate-900">{item.name}</div>
-                        <div className="text-xs text-slate-500">{item.desc}</div>
+                        <div className="text-sm font-semibold text-white">{item.name}</div>
+                        <div className="text-xs text-slate-400">{item.desc}</div>
                       </div>
                     </div>
                   ))}
@@ -1142,6 +1237,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
 
       {/* Final CTA - Start Your Journey */}
       <section className="py-20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
